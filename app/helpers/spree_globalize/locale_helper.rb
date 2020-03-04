@@ -3,7 +3,7 @@ module SpreeGlobalize
     def select_supported_locales
       select_tag(
         'supported_locales[]',
-        options_for_select(available_locales_options, Config.supported_locales),
+        options_for_select(current_store.available_locales.map(&:to_sym)),
         common_options
       )
     end
@@ -11,7 +11,7 @@ module SpreeGlobalize
     def select_available_locales_fields
       select_tag(
         'locale',
-        options_for_select(available_locales_options, SpreeI18n::Config.available_locales),
+        options_for_select(available_locales_options, current_store.available_locales),
         common_options
       )
     end
