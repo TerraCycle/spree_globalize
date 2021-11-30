@@ -1,8 +1,8 @@
-module Spree
+module SpreeGlobalize
   module Admin
     module ProductPropertiesControllerDecorator
       def translate
-        product_property = Spree::ProductProperty.find(params[:id])
+        product_property = ::Spree::ProductProperty.find(params[:id])
         product_property.update update_product_property_attribute
         redirect_to spree.admin_product_product_properties_path(product_property.product)
       end
@@ -19,4 +19,4 @@ module Spree
   end
 end
 
-::Spree::Admin::ProductPropertiesController.prepend(Spree::Admin::ProductPropertiesControllerDecorator)
+::Spree::Admin::ProductPropertiesController.prepend(::SpreeGlobalize::Admin::ProductPropertiesControllerDecorator)

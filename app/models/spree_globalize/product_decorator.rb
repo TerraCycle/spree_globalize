@@ -1,4 +1,4 @@
-module Spree
+module SpreeGlobalize
   module ProductDecorator
     def self.prepended(base)
       base.translates :name, :description, :meta_title, :meta_description, :meta_keywords, :slug, fallbacks_for_empty_translations: true, versioning: :paper_trail
@@ -15,7 +15,7 @@ module Spree
       end
 
       def base.like_any(fields, values)
-        translations = Spree::Product::Translation.arel_table
+        translations = ::Spree::Product::Translation.arel_table
         source = fields.product(values, [translations, arel_table])
         clauses = source.map do |(field, value, arel)|
           arel[field].matches("%#{value}%")
@@ -26,7 +26,7 @@ module Spree
     end
 
 
-    Spree::Product.include SpreeGlobalize::Translatable
+    ::Spree::Product.include ::SpreeGlobalize::Translatable
 
     # Don't punch slug on original product as it prevents bulk deletion.
     # Also we don't need it, as it is translated.
@@ -37,7 +37,7 @@ module Spree
     end
 
     def property(property_name)
-      product_properties.joins(:property).find_by(spree_properties: { id: Spree::Property.find_by(name: property_name) }).try(:value)
+      product_properties.joins(:property).find_by(spree_properties: { id: ::Spree::Property.find_by(name: property_name) }).try(:value)
     end
 
     private
@@ -52,4 +52,4 @@ module Spree
   end
 end
 
-::Spree::Product.prepend(Spree::ProductDecorator)
+::Spree::Product.prepend(::SpreeGlobalize::ProductDecorator)

@@ -1,4 +1,4 @@
-module Spree
+module SpreeGlobalize
   module Admin
     module ShippingMethodsControllerDecorator
       private
@@ -15,4 +15,4 @@ module Spree
   end
 end
 
-::Spree::Admin::ShippingMethodsController.prepend(Spree::Admin::ShippingMethodsControllerDecorator)
+::Spree::Admin::ShippingMethodsController.prepend(::SpreeGlobalize::Admin::ShippingMethodsControllerDecorator)

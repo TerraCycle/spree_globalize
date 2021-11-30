@@ -1,8 +1,8 @@
-module Spree
+module SpreeGlobalize
   module Admin
     module OptionValuesControllerDecorator
       def update
-        option_value = Spree::OptionValue.find(params[:id])
+        option_value = ::Spree::OptionValue.find(params[:id])
         option_value.update update_option_value_attribute
         redirect_to spree.edit_admin_option_type_path(option_value.option_type)
       end
@@ -14,10 +14,10 @@ module Spree
       end
 
       def permitted_params
-        Spree::PermittedAttributes.option_value_attributes
+        ::Spree::PermittedAttributes.option_value_attributes
       end
     end
   end
 end
 
-::Spree::Admin::OptionValuesController.prepend(Spree::Admin::OptionValuesControllerDecorator)
+::Spree::Admin::OptionValuesController.prepend(::SpreeGlobalize::Admin::OptionValuesControllerDecorator)
