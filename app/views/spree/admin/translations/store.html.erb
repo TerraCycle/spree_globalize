@@ -13,7 +13,7 @@
     <%= render 'fields' %>
   </div>
   <div class="col-md-8">
-    <%= form_for [:admin, @store] do |f| %>
+    <%= form_for [:admin, @store], url: spree.admin_store_path(@store) do |f| %>
       <%= render 'form_fields', f: f %>
       <div class="form-actions" data-hook="buttons">
         <%= button Spree.t(:update), 'update' %>
