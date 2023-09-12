@@ -13,7 +13,7 @@
     <%= render 'fields' %>
   </div>
   <div class="col-md-8">
-    <%= form_for [:admin, :option_type, @resource], url: spree.admin_option_type_path(@option_value.option_type, @option_value) do |f| %>
+    <%= form_for [:admin, :option_type, @resource], url: spree.admin_translate_option_value_path(@option_value), method: :patch do |f| %>
       <%= render 'form_fields', f: f %>
       <div class="form-actions" data-hook="buttons">
         <%= button Spree.t(:update), 'update' %>
