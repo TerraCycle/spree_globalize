@@ -31,7 +31,7 @@ module SpreeGlobalize
 
       # preload translations
       def spree_base_scopes
-        super.with_translations
+        super.with_translations(I18n.locale)
       end
     end
   end
